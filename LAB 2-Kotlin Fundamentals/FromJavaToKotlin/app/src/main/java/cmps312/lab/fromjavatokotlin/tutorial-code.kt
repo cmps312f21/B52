@@ -103,3 +103,39 @@ package cmps312.lab.fromjavatokotlin
 //for(item in items){
 //    println(item)
 //}
+
+//var numbers = listOf(1, null, 3, 4, 5, 6)  //immutable - unchangeable
+//val numbers2 = mutableListOf(1, null, 3, 4, 5, 6)
+//
+//numbers = listOf(999,4,4,5,6,6)
+//
+//numbers2.add(null)
+//print(numbers2)
+//
+//val items = listOf<String?>("Banana", null, "Strawberry", "peach", "kiraz mevsimi")
+//print(items)
+//for (item in items){
+//    print(item?.length)
+//}
+/*
+    //collection
+    val numbers = mutableListOf(1, 2, 3, 4, 55, 67, 44, 12, 59)  //immutable - unchangeable
+    //lambdas
+    numbers.forEach { print("$it-") }
+    println()
+
+    val result = numbers.filter { it > 20 }
+    println(result)
+
+    val sum = numbers.reduce { acc, i -> acc + i }
+    println(sum)
+
+    val result2 = numbers.find { it == 550 }
+    println("result $result2")
+
+    val result3 = numbers
+        .filter { it > 20 }
+        .reduce { acc, i -> acc + i }
+
+    println(result3)
+ */
