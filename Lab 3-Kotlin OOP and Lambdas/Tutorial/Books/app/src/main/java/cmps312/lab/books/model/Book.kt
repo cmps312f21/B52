@@ -1,6 +1,6 @@
 package cmps312.lab.books.model
 
-open class Book(var name: String, var author: String, var yearOfPublication: Int){
+open class Book(var name: String, var author: String, var yearOfPublication: Int) {
     override fun toString(): String {
         return """
             Name : $name
@@ -20,7 +20,7 @@ class PaperBook(
     yearOfPublication: Int,
     var publisher: String,
     var isbn: String
-) : Book(name, author, yearOfPublication){
+) : Book(name, author, yearOfPublication) {
 
     override fun toString(): String {
         return """
@@ -32,10 +32,40 @@ class PaperBook(
 
 }
 
+class AudioBook(
+    name: String,
+    author: String,
+    yearOfPublication: Int,
+    var size: Int,
+    var length: Int,
+    var artistName: String,
+) : Book(name, author, yearOfPublication) {
+
+    override fun toString(): String {
+        return """
+            ${super.toString()}
+            size : $size
+            length : $length,
+            artistName : $artistName,
+        """.trimIndent()
+    }
+
+}
 
 fun main() {
-    val book = Book("The loard of the rings", "J.R.R", 1954);
-    val paperBook = PaperBook("The loard of the rings", "J.R.R", 1954, "Oriely", "JJ-12-333-44-55");
-//    println(book)
-    println(paperBook)
+    val paperBook1 =
+        PaperBook("The loard of the rings V1", "J.R.R", 1954, "Oriely", "JJ-12-333-44-55");
+    val paperBook2 =
+        PaperBook("The loard of the rings V2", "J.R.R", 1954, "Oriely", "JJ-12-333-44-55");
+    val paperBook3 =
+        PaperBook("The loard of the rings V3", "J.R.R", 1954, "Oriely", "JJ-12-333-44-55");
+
+    val audioBook1 = AudioBook("The loard of the rings V1", "J.R.R", 1954, 12, 300, "Ahlam Abdonada");
+    val audioBook2 = AudioBook("The loard of the rings V2", "J.R.R", 1954, 11, 200, "Ahlam Abdonada");
+    val audioBook3 = AudioBook("The loard of the rings V3", "J.R.R", 1954, 16, 400, "Ahlam Abdonada");
+
+    val books = listOf<Book>(paperBook1, audioBook1, paperBook2, paperBook3, audioBook2, audioBook3)
+    for (book in books)
+        println(book)
+
 }
