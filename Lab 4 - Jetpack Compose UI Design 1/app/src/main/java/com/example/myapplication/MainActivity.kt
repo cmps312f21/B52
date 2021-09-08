@@ -62,7 +62,8 @@ fun MessageCard(name: String) {
         )
         Spacer(modifier = Modifier.width(10.dp))
         Column {
-            Text(text = "${stringResource(id = R.string.username)} $name", modifier = Modifier.padding(10.dp))
+            Text(text = "${stringResource(id = R.string.username)} $name",
+                modifier = Modifier.padding(10.dp))
             Divider(thickness = 1.dp, color = Color.White)
             Text(
                 text = "${stringResource(id = R.string.description)} Developers Terms Privacy Policy",

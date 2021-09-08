@@ -12,7 +12,7 @@ object CovidStatRepository {
         val data = File("data/covid-data.json").readText()
 
         //convert the text to covid objects
-        covidStats = Json.decodeFromString(data)
+        covidStats = Json{ignoreUknownKeys = true}.decodeFromString(data)
         //extract some values
         //covidStats = Json { ignoreUnknownKeys = true }.decodeFromString(data)
     }
