@@ -26,7 +26,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MessageCard(name = "Daddy Shark")
+            Surface(
+                modifier = Modifier.fillMaxSize().padding(10.dp),
+                color = MaterialTheme.colors.background
+            ) {
+                MessageCard(name = "Daddy Shark")
+            }
         }
     }
 }
@@ -34,11 +39,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MessageCard(name: String) {
-    Row(modifier = Modifier
-        .padding(10.dp)
-        .background(Color.Magenta)
-        .border(2.dp, Color.Red, RectangleShape)
-        ) {
+    Row(
+        modifier = Modifier
+//            .padding(all = 10.dp)
+            .border(2.dp, Color.Red, RectangleShape)
+            .fillMaxSize(1f)
+    ) {
         Image(
             painter = painterResource(id = R.drawable.someone),
             contentDescription = "A shark Image",
@@ -46,10 +52,13 @@ fun MessageCard(name: String) {
                 .size(60.dp)
                 .clip(CircleShape)
         )
+        Spacer(modifier = Modifier.width(10.dp))
         Column {
-            Text(text = "$name")
-            Divider()
-            Text(text = "DevelopersTermsPrivacyPolicy & SafetyHow YouTube worksTest new features. © 2021 Google LLC ...")
+            Text(text = "$name", modifier = Modifier.padding(10.dp))
+            Divider(thickness = 1.dp, color = Color.White)
+            Text(
+                text = "DevelopersTermsPrivacyPolicy",
+                style = MaterialTheme.typography.h4)
         }
     }
 }
