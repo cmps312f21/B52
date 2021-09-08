@@ -18,6 +18,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.ui.theme.MyApplicationTheme
@@ -27,16 +31,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Surface(
-                modifier = Modifier.fillMaxSize().padding(10.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(10.dp),
                 color = MaterialTheme.colors.background
             ) {
-                MessageCard(name = "Daddy Shark")
+                MessageCard(name = "Ms. Amina")
             }
         }
     }
 }
-//Modifiers
 
+//Composable , addtext , define function, preview
+//Layouts , row , column , image, modifers
+//
 @Composable
 fun MessageCard(name: String) {
     Row(
@@ -54,15 +62,21 @@ fun MessageCard(name: String) {
         )
         Spacer(modifier = Modifier.width(10.dp))
         Column {
-            Text(text = "$name", modifier = Modifier.padding(10.dp))
+            Text(text = "${stringResource(id = R.string.username)} $name", modifier = Modifier.padding(10.dp))
             Divider(thickness = 1.dp, color = Color.White)
             Text(
-                text = "DevelopersTermsPrivacyPolicy",
-                style = MaterialTheme.typography.h4)
+                text = "${stringResource(id = R.string.description)} Developers Terms Privacy Policy",
+//                fontWeight = FontWeight.Bold,
+//                modifier = Modifier.width(290.dp),
+//                textAlign = TextAlign.Left,
+//                fontFamily = FontFamily.Serif,
+//                style = MaterialTheme.typography.h4
+            )
         }
     }
 }
 
+//Localization
 @Preview
 @Composable
 fun DefaultPreview() {
