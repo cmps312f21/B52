@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.cmps312.stadiumapp.ui.theme.StadiumAppTheme
-import com.example.stadiumappprep.model.StadiumRepository
+import com.cmps312.stadiumapp.model.StadiumRepository
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.example.stadiumappprep.model
+package com.cmps312.stadiumapp.model
 
 import android.content.Context
 import kotlinx.serialization.decodeFromString

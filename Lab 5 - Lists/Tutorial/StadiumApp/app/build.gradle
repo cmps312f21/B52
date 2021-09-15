@@ -4,7 +4,6 @@ plugins {
     //serialization 1
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.5.30'
 }
-
 android {
     compileSdk 31
 
