@@ -65,10 +65,10 @@ fun TipCalculatorScreen() {
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewMyDesign() {
-    TipCalculatorAppTheme {
-        TipCalculatorScreen()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewMyDesign() {
+//    TipCalculatorAppTheme {
+//        TipCalculatorScreen()
+//    }
+//}
