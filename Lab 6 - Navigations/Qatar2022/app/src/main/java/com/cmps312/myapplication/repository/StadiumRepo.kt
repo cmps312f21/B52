@@ -28,8 +28,8 @@ object StadiumRepo {
         else -> stadiums.filter { it.status.contains(status) }
     }
 
-    fun filterStadiumByName(status: String) = stadiums.filter {
-        it.name.lowercase(Locale.getDefault()).contains(status.lowercase(
+    fun filterStadiumByName(name: String) = stadiums.filter {
+        it.name.lowercase(Locale.getDefault()).contains(name.lowercase(
             Locale.getDefault()))
     }
 
