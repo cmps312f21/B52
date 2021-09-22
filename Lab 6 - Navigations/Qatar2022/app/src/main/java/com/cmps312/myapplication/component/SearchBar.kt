@@ -1,6 +1,8 @@
 package com.cmps312.myapplication.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.TextField
@@ -13,24 +15,28 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.cmps312.myapplication.ui.theme.MyApplicationTheme
 
+//Ayah -> Dark
+
 @Composable
-fun SearchBar() {
-    var searchText by remember {
-        mutableStateOf("Hello")
-    }
+fun SearchBar(searchText: String, onSearch: (String) -> Unit) {
     TextField(
         value = searchText,
-        onValueChange = { searchText = it },
-        modifier = Modifier.background(MaterialTheme.colors.primary),
+        onValueChange = { onSearch(it) },
+        modifier = Modifier
+            .background(MaterialTheme.colors.primary)
+            .fillMaxWidth(),
         leadingIcon = {
             Icon(imageVector = Icons.Default.Search,
                 contentDescription = "Search Icon",
                 tint = MaterialTheme.colors.secondary)
         },
         trailingIcon = {
-            Icon(imageVector = Icons.Default.Close,
-                contentDescription = "Close Icon",
-                tint = MaterialTheme.colors.secondary)
+            if (searchText.isNotEmpty()) {
+                Icon(imageVector = Icons.Default.Close,
+                    contentDescription = "Close Icon",
+                    tint = MaterialTheme.colors.secondary,
+                    modifier = Modifier.clickable { onSearch("") })
+            }
         },
         textStyle = TextStyle(MaterialTheme.colors.secondary)
 
@@ -41,7 +47,10 @@ fun SearchBar() {
 @Composable
 fun SearchBarPreview() {
     MyApplicationTheme {
-        SearchBar()
+        var searchText by remember { mutableStateOf("") }
+        SearchBar(searchText, onSearch = {
+            searchText = it
+        })
     }
 
 }
