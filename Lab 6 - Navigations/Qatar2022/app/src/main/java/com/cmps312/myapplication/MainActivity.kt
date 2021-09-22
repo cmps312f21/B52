@@ -9,6 +9,8 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.cmps312.myapplication.component.StadiumList
+import com.cmps312.myapplication.repository.StadiumRepo
 import com.cmps312.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +30,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MyApp(context: Context) {
-    //Todo
+    val stadiums = StadiumRepo.getStadiums(context)
+    StadiumList(stadiums)
 }
 
 
