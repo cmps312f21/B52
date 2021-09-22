@@ -8,6 +8,12 @@ import java.util.*
 
 //Todo Add the SortBy
 
+object SortBy{
+    const val SEATING_CAPACITY = "SEATING CAPACITY"
+    const val STADIUM_NAME = "STADIUM NAME"
+    const val CITY_NAME = "CITY NAME"
+}
+
 object StadiumRepo {
     private var stadiums = listOf<Stadium>()
 

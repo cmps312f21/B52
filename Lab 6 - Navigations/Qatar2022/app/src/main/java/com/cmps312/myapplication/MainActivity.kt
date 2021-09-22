@@ -49,7 +49,6 @@ fun Content(searchText : String) {
         true -> StadiumRepo.filterStadiumByName(searchText)
         else -> StadiumRepo.getStadiums(LocalContext.current)
     }
-
     StadiumList(stadiums = stadiums)
 }
 
