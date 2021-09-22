@@ -32,11 +32,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
 fun MyApp() {
     var searchText by remember { mutableStateOf("") }
-    var selectedOption by remember { mutableStateOf("All") }
+    var selectedOption by remember { mutableStateOf("Sort By") }
 
     Scaffold(
         topBar = {

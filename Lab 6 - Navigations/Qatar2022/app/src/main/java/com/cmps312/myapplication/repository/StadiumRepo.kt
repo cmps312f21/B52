@@ -12,6 +12,7 @@ object SortBy{
     const val SEATING_CAPACITY = "SEATING CAPACITY"
     const val STADIUM_NAME = "STADIUM NAME"
     const val CITY_NAME = "CITY NAME"
+    const val ALL = "ALL"
 }
 
 object StadiumRepo {
