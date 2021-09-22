@@ -36,7 +36,7 @@ fun MyApp() {
     NavHost(navController = navController, startDestination = "homeScreen") {
         //Mapping /HomeScreen --- take them to this screen
         composable("homescreen") { HomeScreen(navController) }
-        composable("detailsScreen") { DetailsScreen(navController) }
+        composable("detailsscreen") { DetailsScreen(navController) }
     }
 }
 
@@ -54,7 +54,7 @@ fun HomeScreen(navController: NavController) {
 fun DetailsScreen(navController: NavController) {
     Column() {
         Text(text = "Detail Screen")
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = { navController.navigate("homescreen") }) {
             Text("Go to Home Screen")
         }
     }
