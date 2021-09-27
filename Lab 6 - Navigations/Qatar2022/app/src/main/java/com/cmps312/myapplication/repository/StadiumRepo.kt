@@ -8,13 +8,6 @@ import java.util.*
 
 //Todo Add the SortBy
 
-object SortBy{
-    const val SEATING_CAPACITY = "SEATING CAPACITY"
-    const val STADIUM_NAME = "STADIUM NAME"
-    const val CITY_NAME = "CITY NAME"
-    const val ALL = "ALL"
-}
-
 object StadiumRepo {
     private var stadiums = listOf<Stadium>()
 
@@ -35,8 +28,8 @@ object StadiumRepo {
         else -> stadiums.filter { it.status.contains(status) }
     }
 
-    fun filterStadiumByName(name: String) = stadiums.filter {
-        it.name.lowercase(Locale.getDefault()).contains(name.lowercase(
+    fun filterStadiumByName(status: String) = stadiums.filter {
+        it.name.lowercase(Locale.getDefault()).contains(status.lowercase(
             Locale.getDefault()))
     }
 

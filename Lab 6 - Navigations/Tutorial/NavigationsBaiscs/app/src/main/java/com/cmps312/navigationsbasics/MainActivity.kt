@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -30,19 +30,68 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+//Todo 1
 @Composable
 fun MyApp() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "homeScreen") {
+    Scaffold(
+        bottomBar = { BottomNavBar(navController) }
+    ) {
+        MyNavHost(navController)
+    }
+}
+
+//Todo 2
+@Composable
+fun BottomNavBar(navController: NavHostController) {
+    var selected by remember {
+        mutableStateOf(1)
+    }
+    BottomAppBar(
+        content = {
+            BottomNavigationItem(
+                selected = selected == 1,
+                onClick = {
+                    selected = 1
+                    navController.navigate("homescreen")
+                },
+                label = { Text(text = "Home") },
+                icon = {
+                    Icon(imageVector = Icons.Default.Home,
+                        contentDescription = "Favourites")
+                },
+                alwaysShowLabel = true)
+            Text(text = "|")
+            BottomNavigationItem(
+                selected = selected == 2,
+                onClick = {
+                    selected = 2
+                    navController.navigate("detailsscreen")
+                },
+                label = { Text(text = "Favourites") },
+                icon = {
+                    Icon(imageVector = Icons.Default.Favorite,
+                        contentDescription = "Favourites")
+                },
+                alwaysShowLabel = true)
+        }
+    )
+}
+
+//Todo 3
+@Composable
+fun MyNavHost(navController: NavHostController) {
+    NavHost(navController = navController, startDestination = "homescreen") {
         //Mapping /HomeScreen --- take them to this screen
+        //Possible Routes in my app
         composable("homescreen") { HomeScreen(navController) }
         composable("detailsscreen") { DetailsScreen(navController) }
     }
 }
 
 @Composable
-fun HomeScreen(navController: NavController) {
-    Column() {
+fun HomeScreen(navController: NavHostController) {
+    Column {
         Text(text = "Home Screen")
         Button(onClick = { navController.navigate("detailsScreen") }) {
             Text("Go to Detail Screen")
@@ -51,8 +100,8 @@ fun HomeScreen(navController: NavController) {
 }
 
 @Composable
-fun DetailsScreen(navController: NavController) {
-    Column() {
+fun DetailsScreen(navController: NavHostController) {
+    Column {
         Text(text = "Detail Screen")
         Button(onClick = { navController.navigate("homescreen") }) {
             Text("Go to Home Screen")

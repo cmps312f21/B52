@@ -1,10 +1,10 @@
 package com.cmps312.bankingapp.model
 
-import android.os.Parcelable
 //import kotlinx.android.parcel.Parcelize
 //
 //@Parcelize
 data class Transfer(
+    var transferId: Int = 0,
     var fromAccountNo: String? = null,
     var beneficiaryName: String? = null,
     var beneficiaryAccountNo: String? = null,

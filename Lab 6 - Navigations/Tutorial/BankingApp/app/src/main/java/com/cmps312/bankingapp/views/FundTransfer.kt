@@ -1,7 +1,8 @@
-package com.cmps312.bankingapp.component
+package com.cmps312.bankingapp.views
 
 
 import android.widget.Toast
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -10,11 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.cmps312.bankingapp.model.Transfer
+import com.cmps312.bankingapp.viewmodel.BankingViewModel
 
 //Todo : add the call back
 @Composable
-fun FundTransferScreen() {
+fun FundTransferScreen(navController: NavHostController, onTransferAdded: (Int) -> Unit) {
 
     var fromAccount by remember { mutableStateOf("") }
     var amount by remember { mutableStateOf("") }
@@ -22,6 +26,9 @@ fun FundTransferScreen() {
     var beneficiaryAccountNo by remember { mutableStateOf("") }
 
     var context = LocalContext.current
+    val bankingViewModel =
+        viewModel<BankingViewModel>(viewModelStoreOwner = LocalContext.current as ComponentActivity)
+
     Card(modifier = Modifier
         .padding(16.dp)
         .fillMaxWidth()
@@ -70,6 +77,9 @@ fun FundTransferScreen() {
                     Toast.makeText(context, "${transfer.toString()}", Toast.LENGTH_LONG).show()
 
                     //Todo add the navigation here
+                    val transferId = bankingViewModel.addTransfer(transfer)
+//                    Toast.makeText(context, "${transfer.toString()}", Toast.LENGTH_LONG).show()
+                    onTransferAdded(transferId)
 
                 } else {
                     Toast.makeText(context, "Please provide all the information",
