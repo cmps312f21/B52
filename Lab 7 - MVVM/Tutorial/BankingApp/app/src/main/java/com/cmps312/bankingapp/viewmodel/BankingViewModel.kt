@@ -19,4 +19,19 @@ class BankingViewModel(appContext: Application) : AndroidViewModel(appContext) {
     val transfers = mutableStateListOf<Transfer>(*bankRepository.getTransfers().toTypedArray())
 
     var selectedTransfer by mutableStateOf(Transfer())
+
+    lateinit var newTransfer : Transfer
+
+    fun setTransferFromDetails(fromAccount: String, amount: Double){
+        newTransfer = Transfer(fromAccount, amount)
+    }
+
+    fun setBeneficiaryDetails(beneficiaryName: String, beneficiaryAccountNo: String){
+        newTransfer.beneficiaryName = beneficiaryName
+        newTransfer.beneficiaryAccountNo = beneficiaryAccountNo
+    }
+
+    fun addTranser(newTransfer: Transfer) {
+        transfers.add(newTransfer)
+    }
 }

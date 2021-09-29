@@ -1,20 +1,42 @@
 package com.cmps312.bankingapp.view
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.cmps312.bankingapp.view.account.AccountDetails
+import com.cmps312.bankingapp.view.transfer.Beneficiary
+import com.cmps312.bankingapp.view.transfer.FundTransfer
+import com.cmps312.bankingapp.view.transfer.TransferConfirmation
 
 @Composable
-fun AppNavHost(){
-    val navHostController = rememberNavController()
+fun AppNavHost(navHostController: NavHostController) {
 
-    NavHost(navController = navHostController, startDestination = "transferList"){
-        composable(route = "transferDetails"){ TransferDetails(onSubmit = {
-            navHostController.navigate("transferList")
+    NavHost(navController = navHostController, startDestination = Screen.TransferList.route) {
+        composable(route = Screen.TransferDetail.route) {
+            TransferDetails(onSubmit = {
+                navHostController.navigate(Screen.TransferList.route)
+            })
+        }
+        composable(route = Screen.TransferList.route) {
+            TransferList(onTransferSelected = {
+                navHostController.navigate(Screen.TransferDetail.route)
+            })
+        }
+
+        composable(route = Screen.FundTransfer.route) {
+            FundTransfer(onFundTransfer = {
+                navHostController.navigate(Screen.Beneficiary.route)
+            })
+        }
+
+        composable(route = Screen.AccountDetails.route) { AccountDetails() }
+        composable(route = Screen.Beneficiary.route) { Beneficiary(onSelectedBeneficiary = {
+            navHostController.navigate(Screen.TransferConfirmation.route)
         })}
-        composable(route = "transferList"){ TransferList(onTransferSelected = {
-            navHostController.navigate("transferDetails")
+
+        composable(route = Screen.TransferConfirmation.route) { TransferConfirmation(onTransferConfirmation = {
+            navHostController.navigate(Screen.TransferList.route)
         })}
     }
 
