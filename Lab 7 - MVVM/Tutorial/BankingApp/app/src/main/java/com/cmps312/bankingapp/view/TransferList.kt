@@ -24,6 +24,7 @@ import com.cmps312.bankingapp.viewmodel.BankingViewModel
 fun TransferList() {
     val bankingViewModel =
         viewModel<BankingViewModel>(viewModelStoreOwner = LocalContext.current as ComponentActivity)
+
     Card(
         modifier = Modifier
             .padding(8.dp)
