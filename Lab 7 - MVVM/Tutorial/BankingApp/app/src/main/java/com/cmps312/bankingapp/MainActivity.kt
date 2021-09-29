@@ -8,6 +8,8 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.cmps312.bankingapp.ui.theme.BankingAppTheme
+import com.cmps312.bankingapp.view.AppNavHost
+import com.cmps312.bankingapp.view.MainScreen
 import com.cmps312.bankingapp.view.TransferList
 
 class MainActivity : ComponentActivity() {
@@ -17,22 +19,17 @@ class MainActivity : ComponentActivity() {
             BankingAppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    MainScreen()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    TransferList()
-}
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     BankingAppTheme {
-        Greeting("Android")
+        MainScreen()
     }
 }

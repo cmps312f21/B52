@@ -21,7 +21,7 @@ import com.cmps312.bankingapp.model.Transfer
 import com.cmps312.bankingapp.viewmodel.BankingViewModel
 
 @Composable
-fun TransferList() {
+fun TransferList(onTransferSelected: () -> Unit) {
     val bankingViewModel =
         viewModel<BankingViewModel>(viewModelStoreOwner = LocalContext.current as ComponentActivity)
 
@@ -45,6 +45,7 @@ fun TransferList() {
                     TransferCard(transfer, onTransferSelected = {
                         //Todo Transfer
                         bankingViewModel.selectedTransfer = transfer
+                        onTransferSelected()
                     })
                 }
             }
