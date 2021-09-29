@@ -12,6 +12,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.cmps312.bankingapp.ui.theme.BankingAppTheme
+import com.cmps312.bankingapp.view.TransferList
 import com.cmps312.bankingapp.viewmodel.BankingViewModel
 
 class MainActivity : ComponentActivity() {
@@ -30,16 +31,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-
-    val bankingViewModel = viewModel<BankingViewModel>(viewModelStoreOwner = LocalContext.current as ComponentActivity)
-
-    Column {
-        bankingViewModel.accounts.forEach {  account->
-            Text(text = "Hello $account!")
-        }
-    }
-
-
+    TransferList()
 }
 
 @Preview(showBackground = true)
