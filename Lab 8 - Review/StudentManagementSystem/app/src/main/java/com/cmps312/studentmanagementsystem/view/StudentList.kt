@@ -9,6 +9,8 @@ import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -70,6 +72,9 @@ fun StudentCard(student: Student, onStudentSelected: () -> Unit) {
                 Text(text = "Name : ${student.name}")
                 Text(text = "Letter Grade : ${student.grade}")
             }
+            Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit Image")
+            Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete Image")
+
         }
     }
 }
