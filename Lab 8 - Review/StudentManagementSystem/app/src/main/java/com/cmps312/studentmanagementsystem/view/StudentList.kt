@@ -1,6 +1,9 @@
 package com.cmps312.studentmanagementsystem.view
 
+import android.os.Build
+import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,11 +20,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.cmps312.studentmanagementsystem.model.Student
 import com.cmps312.studentmanagementsystem.viewmodel.StudentViewModel
 
+@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun StudentList(onStudentSelected: () -> Unit) {
     val studentViewModel =
@@ -48,7 +53,12 @@ fun StudentList(onStudentSelected: () -> Unit) {
                         //Todo Transfer
                         studentViewModel.selectedStudent = student
                         onStudentSelected()
-                    })
+                    },
+                        onDeleteItem = {
+                            studentViewModel.deleteStudent(student)
+                            Log.d("Clicked", student.studentId + "")
+                        }
+                    )
                 }
             }
         }
@@ -57,14 +67,13 @@ fun StudentList(onStudentSelected: () -> Unit) {
 }
 
 @Composable
-fun StudentCard(student: Student, onStudentSelected: () -> Unit) {
+fun StudentCard(student: Student, onStudentSelected: () -> Unit, onDeleteItem: () -> Unit) {
     Card(elevation = 10.dp,
         backgroundColor = Color.LightGray,
         modifier = Modifier
             .padding(10.dp)) {
         Row(modifier = Modifier
-            .padding(15.dp)
-            .clickable { onStudentSelected() },
+            .padding(15.dp),
             verticalAlignment = Alignment.CenterVertically) {
             Icon(imageVector = Icons.Default.Person, contentDescription = "Person Image")
             Column(modifier = Modifier.weight(3f)) {
@@ -73,8 +82,17 @@ fun StudentCard(student: Student, onStudentSelected: () -> Unit) {
                 Text(text = "Letter Grade : ${student.grade}")
             }
             Icon(imageVector = Icons.Default.Edit, contentDescription = "Edit Image")
-            Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete Image")
+            Icon(imageVector = Icons.Default.Delete,
+                contentDescription = "Delete Image",
+                modifier = Modifier.clickable { onDeleteItem() })
 
         }
     }
+}
+
+
+@Preview
+@Composable
+fun TestComponent() {
+    StudentList() {}
 }
