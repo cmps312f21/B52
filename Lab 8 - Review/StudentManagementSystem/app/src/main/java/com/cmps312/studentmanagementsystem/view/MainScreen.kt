@@ -20,8 +20,7 @@ fun MainScreen() {
         topBar = { TopBar(navHostController) },
         floatingActionButton = {
             FloatingActionButton(onClick = { navHostController.navigate(Screen.StudentScreen.route)}) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add",
-                    tint = Color.Blue)
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add", tint = Color.Blue)
             }
         }
     ) {
