@@ -30,6 +30,8 @@ fun TransferFund(onFundTransfer: () -> Unit) {
     }
     val context = LocalContext.current
 
+    //we populate the data
+    bankingViewModel.getAccounts()
     //initialize the accounts
 
     Scaffold(
@@ -66,8 +68,7 @@ fun TransferFund(onFundTransfer: () -> Unit) {
                             Text("From Account")
                         }
                     )
-                    //we populate the data
-                    bankingViewModel.getAccounts()
+
                     DropdownMenu(expanded = expandable, onDismissRequest = { expandable = false }) {
                         bankingViewModel.accounts.forEach { account ->
                             DropdownMenuItem(onClick = {

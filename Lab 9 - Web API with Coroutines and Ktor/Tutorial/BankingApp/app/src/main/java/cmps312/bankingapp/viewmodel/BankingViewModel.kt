@@ -9,12 +9,14 @@ import androidx.lifecycle.viewModelScope
 import cmps312.bankingapp.model.Account
 import cmps312.bankingapp.model.Beneficiary
 import cmps312.bankingapp.model.Transfer
+import cmps312.bankingapp.webapi.QuBankService
 import kotlinx.coroutines.launch
 
 class BankingViewModel(appContext: Application) : AndroidViewModel(appContext) {
     private val TAG = "TransferViewModel"
+    private val cid = 10001;
 
-//    TODO("Not yet implemented")
+    private val bankService = QuBankService()
 
     val accounts = mutableStateListOf<Account>()
     val beneficiaries = mutableStateListOf<Beneficiary>()
@@ -27,7 +29,10 @@ class BankingViewModel(appContext: Application) : AndroidViewModel(appContext) {
     }
 
     private fun getTransfers() {
-        TODO("Not yet implemented")
+        transfers.clear()
+        viewModelScope.launch {
+            transfers.addAll(bankService.getTransfers(cid))
+        }
     }
 
     // used for holding the details of new Transfer - used instead of Nav Component nav args
@@ -45,11 +50,17 @@ class BankingViewModel(appContext: Application) : AndroidViewModel(appContext) {
     }
 
     fun getAccounts() = viewModelScope.launch {
-        TODO("Not yet implemented")
+        accounts.clear()
+        viewModelScope.launch {
+            accounts.addAll(bankService.getAccounts(cid))
+        }
     }
 
     fun addTransfer(transfer: Transfer) {
-        TODO("Not yet implemented")
+        viewModelScope.launch {
+            val newTransfer = bankService.addTransfer(transfer)
+            newTransfer?.let { transfers.add(newTransfer) }
+        }
     }
 
     fun getTransfer(transferId: String) = transfers.find { it.transferId == transferId }
@@ -57,12 +68,18 @@ class BankingViewModel(appContext: Application) : AndroidViewModel(appContext) {
     fun getAccount(accountNo: String): Account? = accounts.find { it.accountNo == accountNo }
 
     fun getBeneficiaries() {
-        TODO("Not yet implemented")
+        beneficiaries.clear()
+        viewModelScope.launch {
+            beneficiaries.addAll(bankService.getBeneficiaries(cid))
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun deleteTransfer(transferId: String) {
-        TODO("Not yet implemented")
+        transfers.removeIf { it.transferId == transferId }
+        viewModelScope.launch {
+            bankService.deleteTransfer(cid, transferId)
+        }
     }
 }
 
