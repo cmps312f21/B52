@@ -1,9 +1,9 @@
 [
-  {"item": "Apple"},
-  {"item": "Cherry"},
-  {"item": "Pineapple"},
-  {"item": "Banana"},
-  {"item": "Kiwi"},
-  {"item": "Mango"},
-  {"item": "Strawberry"}
+  {"item": "Apple \uD83C\uDF4F"},
+  {"item": "Cherry \uD83C\uDF52"},
+  {"item": "Pineapple \uD83C\uDF4D"},
+  {"item": "Banana \uD83C\uDF4C"},
+  {"item": "Kiwi \uD83E\uDD5D"},
+  {"item": "Mango \uD83E\uDD6D"},
+  {"item": "Strawberry \uD83C\uDF53"}
 ]
