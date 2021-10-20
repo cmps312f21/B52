@@ -1,18 +1,18 @@
 [
   {
-    "item": "Apple \uD83C\uDF4F",
+    "item": "Apple",
     "quantity": 5
   },
   {
-    "item": "Banana \uD83C\uDF4C",
+    "item": "Banana",
     "quantity": 8
   },
   {
-    "item": "Kiwi \uD83E\uDD5D",
+    "item": "Kiwi",
     "quantity": 3
   },
   {
-    "item": "Mango \uD83E\uDD6D",
+    "item": "Mango",
     "quantity": 10
   }
 ]
