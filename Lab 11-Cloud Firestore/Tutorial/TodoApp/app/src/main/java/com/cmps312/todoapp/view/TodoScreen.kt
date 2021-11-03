@@ -76,13 +76,14 @@ fun TodoScreen(onAddTodo: () -> Unit) {
                 }
 
             }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween) {
+            Column(
+//                verticalAlignment = Alignment.CenterVertically,
+//                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Datepicker(LocalContext.current,
                     "Select Date",
                     LocalDate(2021, 11, 4)) { selectedDate -> date = selectedDate }
-                Spacer(modifier = Modifier.padding(40.dp))
+//                Spacer(modifier = Modifier.padding(40.dp))
                 Text(fontWeight = FontWeight.Bold, text = date.toString())
             }
             Button(onClick = {

@@ -71,7 +71,11 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun registerTodolistener() {
-
+        TodoListRepo.todoDocumentsRef.addSnapshotListener { snapshot, e ->
+            if (e != null) return@addSnapshotListener
+            val updatedTodoDocuments = snapshot!!.toObjects(Todo::class.java)
+            _todos.value = updatedTodoDocuments
+        }
     }
 
 
