@@ -7,7 +7,8 @@ import androidx.room.RoomDatabase
 import cmps312.lab3.lab10.data.local.entity.Project
 import cmps312.lab3.lab10.data.local.entity.Todo
 
-@Database(entities = [Todo::class, Project::class], version = 3, exportSchema = false)
+@Database(entities = [Todo::class, Project::class],
+    version = 3, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {
 
     //inject the dao that you created
@@ -25,7 +26,7 @@ abstract class TodoDatabase : RoomDatabase() {
             if (database == null) {
                 database = Room.databaseBuilder(context.applicationContext,
                     TodoDatabase::class.java,
-                    "todo_db")
+                    "todos_db")
                     .fallbackToDestructiveMigration().build()
             }
             return database as TodoDatabase
