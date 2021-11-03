@@ -9,5 +9,6 @@ data class Todo(
     var projectId: String? = "",
 
     //todo make it an document id
+    @DocumentId
     var id: String = "",
 )
