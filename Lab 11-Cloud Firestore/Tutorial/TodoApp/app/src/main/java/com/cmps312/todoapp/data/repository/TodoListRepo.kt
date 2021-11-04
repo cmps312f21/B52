@@ -38,8 +38,10 @@ object TodoListRepo {
         projectDocumentsRef.document(project.id).delete()
     }
 
-    suspend fun getTodoListByProject(pid: String): List<Todo> =
-        todoDocumentsRef.whereEqualTo("projectId", pid).get().await().toObjects(Todo::class.java)
+    suspend fun getTodoListByProject(pid: String): List<Todo> = todoDocumentsRef
+        .whereEqualTo("projectId", pid)
+        .get().await()
+        .toObjects(Todo::class.java)
 
     fun addTodo(todo: Todo) = todoDocumentsRef.add(todo)
         .addOnSuccessListener { Log.d(TAG, "Todo added successfully") }
