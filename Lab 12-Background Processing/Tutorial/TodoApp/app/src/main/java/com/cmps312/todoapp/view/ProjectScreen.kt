@@ -4,12 +4,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.OutlinedTextField
@@ -23,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.cmps312.todoapp.data.entity.Project
 import com.cmps312.todoapp.viewmodel.TodoViewModel
-import com.skydoves.landscapist.glide.GlideImage
 import java.util.*
 
 @Composable
@@ -36,7 +30,7 @@ fun ProjectScreen(onSubmit: () -> Unit) {
     var projectName by remember { mutableStateOf("") }
     var title by remember { mutableStateOf("Add Project") }
     var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
-    val imagePicker = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()){ uri-> selectedImageUri = uri}
+
     //Todo add image picker
 
     if (todoViewModel.selectedProject != null) {
@@ -76,7 +70,7 @@ fun ProjectScreen(onSubmit: () -> Unit) {
             )
             Button(
                 onClick = {
-                    imagePicker.launch("image/*")
+                    //todo add image picker
                 }) {
                 Text(text = "Select Project Image")
             }
@@ -116,7 +110,7 @@ fun ProjectScreen(onSubmit: () -> Unit) {
             ) {
                 Text(text = "Submit")
             }
-            GlideImage(selectedImageUri)
+            //      Todo      GlideImage
         }
 
     }
