@@ -1,4 +1,4 @@
-package com.cmps312.todoapp.component
+package com.cmps312.todoapp.view.components
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing

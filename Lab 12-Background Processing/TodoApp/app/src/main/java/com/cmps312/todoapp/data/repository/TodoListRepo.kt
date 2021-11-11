@@ -1,13 +1,17 @@
 package com.cmps312.todoapp.data.repository
 
 import android.net.Uri
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.cmps312.todoapp.data.entity.Project
 import com.cmps312.todoapp.data.entity.Todo
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestoreSettings
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
+import java.security.SecureRandom
+import java.time.LocalDate
 
 object TodoListRepo {
 
@@ -48,5 +52,18 @@ object TodoListRepo {
         todosDocumentsRef.document(id).get().await().toObject(Todo::class.java)
 
     //todo add uploadPhoto
+    @RequiresApi(Build.VERSION_CODES.O)
+    suspend fun uploadPhoto(photoUri: Uri) : String{
+        var fileName = "IMAGE_" + SecureRandom().nextInt(10000) + "_.png"
+        //a link to our storage
+        val storageRef = FirebaseStorage.getInstance().reference
+            .child("images")
+            .child(fileName)
+
+        var task = storageRef.putFile(photoUri).await()
+        //code below will not be executed until the above code finishes
+
+        return storageRef.downloadUrl.await().toString()
+    }
 
 }

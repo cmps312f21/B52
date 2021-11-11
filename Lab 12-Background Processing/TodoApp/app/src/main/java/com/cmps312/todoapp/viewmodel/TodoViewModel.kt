@@ -2,7 +2,9 @@ package com.cmps312.todoapp.viewmodel
 
 import android.app.Application
 import android.net.Uri
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.MutableState
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -53,10 +55,10 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun addProject(project: Project, photoUri: Uri) {
         viewModelScope.launch(Dispatchers.IO) {
-            //Todo call the upload
-            //project.userId = Firebase.auth.currentUser?.uid.toString()
+            project.imageUrl = TodoListRepo.uploadPhoto(photoUri);
             TodoListRepo.addProject(project).await()
         }
     }

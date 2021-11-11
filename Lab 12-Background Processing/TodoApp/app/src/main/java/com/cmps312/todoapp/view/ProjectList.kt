@@ -130,7 +130,7 @@ fun ProjectCard(
                 }
 
             }
-            //Todo add GlideImage
+           GlideImage(project.imageUrl, modifier = Modifier.height(160.dp))
 
         }
 
