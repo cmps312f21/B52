@@ -10,7 +10,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 
 class QuBankService : BankService {
-    private val BASE_URL = "https://cmps312banking.herokuapp.com/api"
+    private val BASE_URL = "https://cmps312banking.cyclic.app/api"
     private val client = HttpClient {
         install(JsonFeature) { serializer = KotlinxSerializer() }
     }
